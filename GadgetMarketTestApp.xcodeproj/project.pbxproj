@@ -27,6 +27,8 @@
 		3CAD9A1C28BA37B8005EB383 /* SFProDisplay-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3CAD9A1B28BA37B7005EB383 /* SFProDisplay-Regular.ttf */; };
 		3CAD9A1E28BA3AE9005EB383 /* ProductDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD9A1D28BA3AE9005EB383 /* ProductDetailsController.swift */; };
 		3CAD9A2028BA65DB005EB383 /* MainCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD9A1F28BA65DB005EB383 /* MainCollectionView.swift */; };
+		3CAD9A2228BA7CB0005EB383 /* ProductDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD9A2128BA7CB0005EB383 /* ProductDetailsView.swift */; };
+		3CAD9A2428BAA733005EB383 /* ProductDetailsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD9A2328BAA733005EB383 /* ProductDetailsCollectionView.swift */; };
 		3CBB32A928B3D6F400611A7D /* SelectCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBB32A828B3D6F400611A7D /* SelectCategoryCell.swift */; };
 		3CBB32AB28B3DF4C00611A7D /* HotSalesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBB32AA28B3DF4C00611A7D /* HotSalesCell.swift */; };
 		3CBB32AD28B411B100611A7D /* BestSellerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBB32AC28B411B100611A7D /* BestSellerCell.swift */; };
@@ -66,6 +68,8 @@
 		3CAD9A1B28BA37B7005EB383 /* SFProDisplay-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Regular.ttf"; sourceTree = "<group>"; };
 		3CAD9A1D28BA3AE9005EB383 /* ProductDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsController.swift; sourceTree = "<group>"; };
 		3CAD9A1F28BA65DB005EB383 /* MainCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionView.swift; sourceTree = "<group>"; };
+		3CAD9A2128BA7CB0005EB383 /* ProductDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsView.swift; sourceTree = "<group>"; };
+		3CAD9A2328BAA733005EB383 /* ProductDetailsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsCollectionView.swift; sourceTree = "<group>"; };
 		3CBB32A828B3D6F400611A7D /* SelectCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoryCell.swift; sourceTree = "<group>"; };
 		3CBB32AA28B3DF4C00611A7D /* HotSalesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotSalesCell.swift; sourceTree = "<group>"; };
 		3CBB32AC28B411B100611A7D /* BestSellerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestSellerCell.swift; sourceTree = "<group>"; };
@@ -192,8 +196,11 @@
 		3CBB32BF28B670D200611A7D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3CAD9A1F28BA65DB005EB383 /* MainCollectionView.swift */,
 				3CBB32C028B6713D00611A7D /* CustomTabBarView.swift */,
 				3CAD9A1028B978EB005EB383 /* CustomNavigationView.swift */,
+				3CAD9A2128BA7CB0005EB383 /* ProductDetailsView.swift */,
+				3CAD9A2328BAA733005EB383 /* ProductDetailsCollectionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -232,7 +239,6 @@
 				3CCE191828B3A311009B864A /* Assets.xcassets */,
 				3CCE191D28B3A311009B864A /* Info.plist */,
 				3CCE191528B3A30E009B864A /* GadgetMarketTestApp.xcdatamodeld */,
-				3CAD9A1F28BA65DB005EB383 /* MainCollectionView.swift */,
 			);
 			path = GadgetMarketTestApp;
 			sourceTree = "<group>";
@@ -326,7 +332,9 @@
 				3CAD9A0528B8FF55005EB383 /* UIView + extension.swift in Sources */,
 				3CCE190D28B3A30E009B864A /* AppDelegate.swift in Sources */,
 				3CCE191728B3A30E009B864A /* GadgetMarketTestApp.xcdatamodeld in Sources */,
+				3CAD9A2228BA7CB0005EB383 /* ProductDetailsView.swift in Sources */,
 				3CCE190F28B3A30E009B864A /* SceneDelegate.swift in Sources */,
+				3CAD9A2428BAA733005EB383 /* ProductDetailsCollectionView.swift in Sources */,
 				3CBB32BE28B66B5F00611A7D /* LayoutCreationService.swift in Sources */,
 				3CAD9A1528BA1C79005EB383 /* UINavigationController + extension.swift in Sources */,
 				3CBB32B128B62BD700611A7D /* MainViewController.swift in Sources */,

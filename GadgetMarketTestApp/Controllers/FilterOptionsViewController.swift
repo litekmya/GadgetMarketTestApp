@@ -10,7 +10,7 @@ import UIKit
 class FilterOptionsViewController: UIViewController {
     
     //MARK: - Private properties
-    private let contentView = CustomNavigationView()
+    private let navigationView = CustomNavigationView()
     private let models = FilterOptionsModel.getData()
     
     private let tableView: UITableView = {
@@ -48,23 +48,18 @@ class FilterOptionsViewController: UIViewController {
         view.addGestureRecognizer(gesture)
         view.backgroundColor = .white
         
-        view.addSubview(contentView)
+        view.addSubview(navigationView)
         view.addSubview(tableView)
     }
     
     private func setupContentView() {
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        
-        contentView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        contentView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        contentView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        contentView.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        navigationView.configureLayoutForView(parentView: view, topConstant: 0)
     }
     
     private func setupTableView() {
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        tableView.topAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 10).isActive = true
+        tableView.topAnchor.constraint(equalTo: navigationView.bottomAnchor, constant: 10).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         tableView.delegate = self
         tableView.dataSource = self
@@ -72,8 +67,8 @@ class FilterOptionsViewController: UIViewController {
     
     private func addTargets() {
         print(view.frame.height)
-        contentView.dismissButton.addTarget(self, action: #selector(dismissButtonAction), for: .touchUpInside)
-        contentView.doneButton.addTarget(self, action: #selector(dismissButtonAction), for: .touchUpInside)
+        navigationView.dismissButton.addTarget(self, action: #selector(dismissButtonAction), for: .touchUpInside)
+        navigationView.doneButton.addTarget(self, action: #selector(dismissButtonAction), for: .touchUpInside)
     }
     
     //MARK: - @objc
@@ -97,7 +92,6 @@ class FilterOptionsViewController: UIViewController {
     
     @objc private func dismissButtonAction() {
         dismiss(animated: true)
-        print(43)
     }
 }
 

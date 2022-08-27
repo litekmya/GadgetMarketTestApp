@@ -45,6 +45,34 @@ class CustomNavigationView: UIView {
         customizeUI()
     }
     
+    func configureLayoutForView(parentView: UIView, topConstant: CGFloat) {
+        translatesAutoresizingMaskIntoConstraints = false
+        leadingAnchor.constraint(equalTo: parentView.leadingAnchor).isActive = true
+        trailingAnchor.constraint(equalTo: parentView.trailingAnchor).isActive = true
+        topAnchor.constraint(equalTo: parentView.topAnchor, constant: topConstant).isActive = true
+        heightAnchor.constraint(equalToConstant: 60).isActive = true
+    }
+    
+    func useWithTwoButtons(title: String) {
+        doneButton.setImage(UIImage(named: "cart"), for: .normal)
+        doneButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -35).isActive = true
+        doneButton.centerYAnchor.constraint(equalTo: dismissButton.centerYAnchor).isActive = true
+        doneButton.heightAnchor.constraint(equalToConstant: 37).isActive = true
+        doneButton.widthAnchor.constraint(equalToConstant: 37).isActive = true
+        
+        dismissButton.topAnchor.constraint(equalTo: topAnchor, constant: 24).isActive = true
+        titleLabel.text = title
+    }
+    
+    func useWithOneButton(title: String) {
+        useWithTwoButtons(title: title)
+        
+        doneButton.setImage(UIImage(named: "cart"), for: .normal)
+        dismissButton.isHidden = true
+        titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 38).isActive = true
+        titleLabel.font = UIFont.installMarkProFont(for: 24)
+    }
+    
     private func customizeUI() {
         addSubview(dismissButton)
         addSubview(doneButton)

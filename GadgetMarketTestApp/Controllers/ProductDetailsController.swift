@@ -10,11 +10,36 @@ import UIKit
 class ProductDetailsController: UIViewController {
     
     private let navigationView = CustomNavigationView()
+//    private let collectionView = UICollectionView() // заменить на кастомный
+    private let contentView = ProductDetailsView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .red
+        setupView()
+        setupNavigationView()
+        setupContentView()
     }
     
+    private func setupView() {
+        view.backgroundColor = .newGray
+        view.addSubview(contentView)
+        view.addSubview(navigationView)
+    }
+    
+    private func setupNavigationView() {
+        navigationView.configureLayoutForView(parentView: view, topConstant: 42)
+        navigationView.useWithTwoButtons(title: "Product Details")
+    }
+    
+    private func setupContentView() {
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        contentView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        contentView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        contentView.heightAnchor.constraint(equalToConstant: view.bounds.height / 2).isActive = true
+        contentView.clipsToBounds = true
+        contentView.layer.cornerRadius = 30
+        contentView.backgroundColor = .white
+    }
 }

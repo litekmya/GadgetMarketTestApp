@@ -12,16 +12,21 @@ class MainCollectionView: UICollectionView {
     static let reuseHeaderID = "selectCategoryHeaderID"
     static let hotSalesHeaderID = "hotSalesHeaderID"
     
+    var mainDelegate: MainCollectionViewDelegate!
+    
     var models: StoreModel?
     private let whiteIconsModels = SelectCategoryIcons.getDataWithWhiteIcons()
     private let grayIconsModels = SelectCategoryIcons.getData()
     private var isSelected = false
     
-    init() {
+    init(mainDelegate: MainCollectionViewDelegate) {
         super.init(frame: .zero, collectionViewLayout: MainCollectionView.createLayout())
         
+        self.mainDelegate = mainDelegate
         delegate = self
         dataSource = self
+        backgroundColor = .newGray
+        
         registerTheRequiredObjets()
     }
     
@@ -46,7 +51,7 @@ class MainCollectionView: UICollectionView {
     private func checkBackgroundColor() {
         for index in 0..<whiteIconsModels.count {
             let indexPath = IndexPath(row: index, section: 0)
-            let cell = collectionView(self, cellForItemAt: indexPath) as? SelectCategoryCell
+            let cell = cellForItem(at: indexPath) as? SelectCategoryCell
             cell?.iconView.backgroundColor = UIColor.white
             
             if cell?.iconView.backgroundColor == .white {
@@ -56,11 +61,11 @@ class MainCollectionView: UICollectionView {
     }
     
     private func changeBackgroudColorForItem(at indexPath: IndexPath, isSelected: Bool) {
-        let cell = collectionView(self, cellForItemAt: indexPath) as? SelectCategoryCell
+        let cell = cellForItem(at: indexPath) as? SelectCategoryCell
         
         if isSelected {
             let model = whiteIconsModels[indexPath.row]
-            cell?.iconView.backgroundColor = UIColor.newOrange
+            cell?.iconView.backgroundColor = .newOrange
             cell?.imageView.image = model.icon
         } else {
             let model = grayIconsModels[indexPath.row]
@@ -146,11 +151,12 @@ extension MainCollectionView: UICollectionViewDelegate {
         switch indexPath.section {
         case 0:
             isSelected.toggle()
+            
             checkBackgroundColor()
             changeBackgroudColorForItem(at: indexPath, isSelected: isSelected)
         case 1: break
         default:
-            print(0)
+            mainDelegate?.present()
         }
     }
     

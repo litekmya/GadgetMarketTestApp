@@ -7,12 +7,17 @@
 
 import UIKit
 
+protocol MainCollectionViewDelegate {
+    
+    func present()
+}
+
 class MainViewController: UIViewController {
     
     //MARK: - Private properties
     private let contentView = CustomTabBarView()
     private var filterButton: UIBarButtonItem!
-    private let customCollectionView = MainCollectionView()
+    private var customCollectionView: MainCollectionView!
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
@@ -33,6 +38,7 @@ class MainViewController: UIViewController {
     }
     
     private func setupCollectionView() {
+        customCollectionView = MainCollectionView(mainDelegate: self)
         view.addSubview(customCollectionView)
         customCollectionView.frame = view.bounds
     }
@@ -47,14 +53,6 @@ class MainViewController: UIViewController {
         filterButton.tintColor = .black
         navigationItem.rightBarButtonItem = filterButton
     }
-    //MARK: - @objc
-    @objc private func filterButtonAction() {
-        let filterOptionsVC = FilterOptionsViewController()
-        filterOptionsVC.modalPresentationStyle = .custom
-        filterOptionsVC.transitioningDelegate = self
-        
-        present(filterOptionsVC, animated: true)
-    }
     
     private func getDataFromNetwork() {
         NetworkManager.shared.fetchData(from: URLs.main.rawValue) { models in
@@ -64,8 +62,16 @@ class MainViewController: UIViewController {
             }
         }
     }
+    
+    //MARK: - @objc
+    @objc private func filterButtonAction() {
+        let filterOptionsVC = FilterOptionsViewController()
+        filterOptionsVC.modalPresentationStyle = .custom
+        filterOptionsVC.transitioningDelegate = self
+        
+        present(filterOptionsVC, animated: true)
+    }
 }
-
 
 //MARK: - UIViewControllerTransitioningDelegate
 extension MainViewController: UIViewControllerTransitioningDelegate {
@@ -73,4 +79,17 @@ extension MainViewController: UIViewControllerTransitioningDelegate {
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
         PresentstionController(presentedViewController: presented, presenting: presenting)
     }
+}
+
+//MARK: - MainCollectionViewDelegate
+extension MainViewController: MainCollectionViewDelegate {
+    
+    func present() {
+        let productDetailsVC = ProductDetailsController()
+        productDetailsVC.modalPresentationStyle = .fullScreen
+        
+        present(productDetailsVC, animated: true)
+    }
+    
+    
 }
