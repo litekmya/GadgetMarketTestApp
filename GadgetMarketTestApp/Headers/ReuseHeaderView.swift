@@ -20,6 +20,7 @@ class ReuseHeaderView: UICollectionReusableView {
     var viewAllButton: UIButton = {
         let button = UIButton()
         button.setTitle("view all", for: .normal)
+        button.titleLabel?.font = UIFont.installMarkProFont(for: 15)
         button.setTitleColor(UIColor.newOrange, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button

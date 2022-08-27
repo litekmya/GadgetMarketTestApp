@@ -9,25 +9,31 @@ import UIKit
 
 protocol SelfConfigureCell {
     static var identifier: String { get }
-    func cunfigure(with intValue: Int)
 }
 
 class SelectCategoryCell: UICollectionViewCell, SelfConfigureCell {
     
     static var identifier = "SelectCategoryCell"
     
-    let iconImageView: UIImageView = {
+    let iconView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 36
+        view.backgroundColor = .white
+        view.contentMode = .scaleAspectFit
+        return view
+    }()
+    
+    let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = 36
-        imageView.backgroundColor = .white
         return imageView
     }()
     
     let titleLabel: UILabel = {
        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        label.font = UIFont.installMarkProFont(for: 12)
         label.text = "Phones"
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -38,6 +44,7 @@ class SelectCategoryCell: UICollectionViewCell, SelfConfigureCell {
         super.init(frame: frame)
         
         setupView()
+        setupCustomView()
         setupImageView()
         setupTitleLabel()
     }
@@ -46,26 +53,29 @@ class SelectCategoryCell: UICollectionViewCell, SelfConfigureCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func cunfigure(with intValue: Int) {
-        print(intValue)
-    }
-    
     private func setupView() {
         clipsToBounds = true
-        addSubview(iconImageView)
+        addSubview(iconView)
         addSubview(titleLabel)
     }
     
+    private func setupCustomView() {
+        iconView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        iconView.widthAnchor.constraint(equalToConstant: 71).isActive = true
+        iconView.heightAnchor.constraint(equalToConstant: 71).isActive = true
+        iconView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        iconView.backgroundColor = .white
+        iconView.addSubview(imageView)
+    }
+    
     private func setupImageView() {
-        iconImageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        iconImageView.widthAnchor.constraint(equalToConstant: 71).isActive = true
-        iconImageView.heightAnchor.constraint(equalToConstant: 71).isActive = true
-        iconImageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        iconImageView.backgroundColor = .white
+        imageView.centerYAnchor.constraint(equalTo: iconView.centerYAnchor).isActive = true
+        imageView.centerXAnchor.constraint(equalTo: iconView.centerXAnchor).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: 30).isActive = true
     }
     
     private func setupTitleLabel() {
         titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        titleLabel.topAnchor.constraint(equalTo: iconImageView.bottomAnchor, constant: 7).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: iconView.bottomAnchor, constant: 7).isActive = true
     }
 }

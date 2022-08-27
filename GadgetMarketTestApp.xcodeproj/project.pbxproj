@@ -7,6 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C817E1C28B6C43900EF7094 /* UICollectionView + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C817E1B28B6C43900EF7094 /* UICollectionView + extension.swift */; };
+		3C817E1E28B6D4CC00EF7094 /* URLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C817E1D28B6D4CC00EF7094 /* URLs.swift */; };
+		3C817E2128B6D8C500EF7094 /* StoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C817E2028B6D8C500EF7094 /* StoreModel.swift */; };
+		3C817E2528B763C100EF7094 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C817E2428B763C100EF7094 /* NetworkManager.swift */; };
+		3C817E2728B76ADF00EF7094 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C817E2628B76ADF00EF7094 /* ImageManager.swift */; };
+		3C817E2928B7A36B00EF7094 /* String + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C817E2828B7A36B00EF7094 /* String + extension.swift */; };
+		3C817E2B28B7D40000EF7094 /* SelectCategoryIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C817E2A28B7D40000EF7094 /* SelectCategoryIcons.swift */; };
+		3CAD99FF28B8C714005EB383 /* FilterOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD99FE28B8C714005EB383 /* FilterOptionsViewController.swift */; };
+		3CAD9A0528B8FF55005EB383 /* UIView + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD9A0428B8FF55005EB383 /* UIView + extension.swift */; };
+		3CAD9A0728B9289B005EB383 /* PresentstionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD9A0628B9289B005EB383 /* PresentstionController.swift */; };
+		3CAD9A0928B93E2F005EB383 /* FilterOptionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD9A0828B93E2F005EB383 /* FilterOptionsCell.swift */; };
+		3CAD9A0F28B97687005EB383 /* UITextField + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD9A0E28B97687005EB383 /* UITextField + extension.swift */; };
+		3CAD9A1128B978EC005EB383 /* CustomNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD9A1028B978EB005EB383 /* CustomNavigationView.swift */; };
+		3CAD9A1328B989B9005EB383 /* FilterOptionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD9A1228B989B9005EB383 /* FilterOptionsModel.swift */; };
+		3CAD9A1528BA1C79005EB383 /* UINavigationController + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD9A1428BA1C79005EB383 /* UINavigationController + extension.swift */; };
+		3CAD9A1828BA2AE7005EB383 /* Mark-Pro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3CAD9A1728BA2AE7005EB383 /* Mark-Pro.ttf */; };
+		3CAD9A1A28BA2D65005EB383 /* UIFont + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD9A1928BA2D65005EB383 /* UIFont + extension.swift */; };
+		3CAD9A1C28BA37B8005EB383 /* SFProDisplay-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3CAD9A1B28BA37B7005EB383 /* SFProDisplay-Regular.ttf */; };
+		3CAD9A1E28BA3AE9005EB383 /* ProductDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD9A1D28BA3AE9005EB383 /* ProductDetailsController.swift */; };
+		3CAD9A2028BA65DB005EB383 /* MainCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD9A1F28BA65DB005EB383 /* MainCollectionView.swift */; };
 		3CBB32A928B3D6F400611A7D /* SelectCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBB32A828B3D6F400611A7D /* SelectCategoryCell.swift */; };
 		3CBB32AB28B3DF4C00611A7D /* HotSalesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBB32AA28B3DF4C00611A7D /* HotSalesCell.swift */; };
 		3CBB32AD28B411B100611A7D /* BestSellerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBB32AC28B411B100611A7D /* BestSellerCell.swift */; };
@@ -26,6 +46,26 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3C817E1B28B6C43900EF7094 /* UICollectionView + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView + extension.swift"; sourceTree = "<group>"; };
+		3C817E1D28B6D4CC00EF7094 /* URLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLs.swift; sourceTree = "<group>"; };
+		3C817E2028B6D8C500EF7094 /* StoreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreModel.swift; sourceTree = "<group>"; };
+		3C817E2428B763C100EF7094 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		3C817E2628B76ADF00EF7094 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
+		3C817E2828B7A36B00EF7094 /* String + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + extension.swift"; sourceTree = "<group>"; };
+		3C817E2A28B7D40000EF7094 /* SelectCategoryIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoryIcons.swift; sourceTree = "<group>"; };
+		3CAD99FE28B8C714005EB383 /* FilterOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterOptionsViewController.swift; sourceTree = "<group>"; };
+		3CAD9A0428B8FF55005EB383 /* UIView + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + extension.swift"; sourceTree = "<group>"; };
+		3CAD9A0628B9289B005EB383 /* PresentstionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentstionController.swift; sourceTree = "<group>"; };
+		3CAD9A0828B93E2F005EB383 /* FilterOptionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterOptionsCell.swift; sourceTree = "<group>"; };
+		3CAD9A0E28B97687005EB383 /* UITextField + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField + extension.swift"; sourceTree = "<group>"; };
+		3CAD9A1028B978EB005EB383 /* CustomNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationView.swift; sourceTree = "<group>"; };
+		3CAD9A1228B989B9005EB383 /* FilterOptionsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterOptionsModel.swift; sourceTree = "<group>"; };
+		3CAD9A1428BA1C79005EB383 /* UINavigationController + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController + extension.swift"; sourceTree = "<group>"; };
+		3CAD9A1728BA2AE7005EB383 /* Mark-Pro.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Mark-Pro.ttf"; sourceTree = "<group>"; };
+		3CAD9A1928BA2D65005EB383 /* UIFont + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont + extension.swift"; sourceTree = "<group>"; };
+		3CAD9A1B28BA37B7005EB383 /* SFProDisplay-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Regular.ttf"; sourceTree = "<group>"; };
+		3CAD9A1D28BA3AE9005EB383 /* ProductDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsController.swift; sourceTree = "<group>"; };
+		3CAD9A1F28BA65DB005EB383 /* MainCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionView.swift; sourceTree = "<group>"; };
 		3CBB32A828B3D6F400611A7D /* SelectCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoryCell.swift; sourceTree = "<group>"; };
 		3CBB32AA28B3DF4C00611A7D /* HotSalesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotSalesCell.swift; sourceTree = "<group>"; };
 		3CBB32AC28B411B100611A7D /* BestSellerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestSellerCell.swift; sourceTree = "<group>"; };
@@ -57,6 +97,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3C817E1F28B6D85900EF7094 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3C817E2028B6D8C500EF7094 /* StoreModel.swift */,
+				3C817E2A28B7D40000EF7094 /* SelectCategoryIcons.swift */,
+				3CAD9A1228B989B9005EB383 /* FilterOptionsModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		3C817E2228B6D9D200EF7094 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				3C817E2428B763C100EF7094 /* NetworkManager.swift */,
+				3C817E2628B76ADF00EF7094 /* ImageManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		3C817E2328B6D9F500EF7094 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3CBB32B028B62BD700611A7D /* MainViewController.swift */,
+				3CAD99FE28B8C714005EB383 /* FilterOptionsViewController.swift */,
+				3CAD9A1D28BA3AE9005EB383 /* ProductDetailsController.swift */,
+				3CAD9A0628B9289B005EB383 /* PresentstionController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		3CAD9A1628BA2AC3005EB383 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				3CAD9A1B28BA37B7005EB383 /* SFProDisplay-Regular.ttf */,
+				3CAD9A1728BA2AE7005EB383 /* Mark-Pro.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		3CBB32B228B641DC00611A7D /* Headers */ = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +160,7 @@
 				3CBB32A828B3D6F400611A7D /* SelectCategoryCell.swift */,
 				3CBB32AA28B3DF4C00611A7D /* HotSalesCell.swift */,
 				3CBB32AC28B411B100611A7D /* BestSellerCell.swift */,
+				3CAD9A0828B93E2F005EB383 /* FilterOptionsCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -91,6 +171,12 @@
 				3CBB32B828B6519B00611A7D /* UILabel + extension.swift */,
 				3CBB32BA28B6575B00611A7D /* UIColor + extension.swift */,
 				3CBB32C228B691E700611A7D /* UIButton + extension.swift */,
+				3C817E1B28B6C43900EF7094 /* UICollectionView + extension.swift */,
+				3C817E2828B7A36B00EF7094 /* String + extension.swift */,
+				3CAD9A0428B8FF55005EB383 /* UIView + extension.swift */,
+				3CAD9A0E28B97687005EB383 /* UITextField + extension.swift */,
+				3CAD9A1428BA1C79005EB383 /* UINavigationController + extension.swift */,
+				3CAD9A1928BA2D65005EB383 /* UIFont + extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -107,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				3CBB32C028B6713D00611A7D /* CustomTabBarView.swift */,
+				3CAD9A1028B978EB005EB383 /* CustomNavigationView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -131,16 +218,21 @@
 			isa = PBXGroup;
 			children = (
 				3CCE191A28B3A311009B864A /* LaunchScreen.storyboard */,
-				3CBB32B028B62BD700611A7D /* MainViewController.swift */,
+				3C817E2328B6D9F500EF7094 /* Controllers */,
 				3CBB32BF28B670D200611A7D /* Views */,
-				3CBB32B228B641DC00611A7D /* Headers */,
 				3CBB32B428B6421000611A7D /* Cells */,
+				3CBB32B228B641DC00611A7D /* Headers */,
+				3C817E1F28B6D85900EF7094 /* Models */,
+				3C817E2228B6D9D200EF7094 /* Managers */,
+				3C817E1D28B6D4CC00EF7094 /* URLs.swift */,
 				3CBB32BC28B66B0D00611A7D /* Helpers */,
 				3CBB32B728B6518300611A7D /* Extensions */,
 				3CBB32B328B641ED00611A7D /* Application */,
+				3CAD9A1628BA2AC3005EB383 /* Fonts */,
 				3CCE191828B3A311009B864A /* Assets.xcassets */,
 				3CCE191D28B3A311009B864A /* Info.plist */,
 				3CCE191528B3A30E009B864A /* GadgetMarketTestApp.xcdatamodeld */,
+				3CAD9A1F28BA65DB005EB383 /* MainCollectionView.swift */,
 			);
 			path = GadgetMarketTestApp;
 			sourceTree = "<group>";
@@ -203,8 +295,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CAD9A1828BA2AE7005EB383 /* Mark-Pro.ttf in Resources */,
 				3CCE191C28B3A311009B864A /* LaunchScreen.storyboard in Resources */,
 				3CCE191928B3A311009B864A /* Assets.xcassets in Resources */,
+				3CAD9A1C28BA37B8005EB383 /* SFProDisplay-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,20 +309,38 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C817E2B28B7D40000EF7094 /* SelectCategoryIcons.swift in Sources */,
+				3CAD9A0928B93E2F005EB383 /* FilterOptionsCell.swift in Sources */,
+				3CAD9A1328B989B9005EB383 /* FilterOptionsModel.swift in Sources */,
+				3CAD9A0728B9289B005EB383 /* PresentstionController.swift in Sources */,
+				3C817E2528B763C100EF7094 /* NetworkManager.swift in Sources */,
+				3C817E2128B6D8C500EF7094 /* StoreModel.swift in Sources */,
+				3CAD9A1A28BA2D65005EB383 /* UIFont + extension.swift in Sources */,
+				3CAD9A1128B978EC005EB383 /* CustomNavigationView.swift in Sources */,
+				3C817E2728B76ADF00EF7094 /* ImageManager.swift in Sources */,
 				3CBB32AD28B411B100611A7D /* BestSellerCell.swift in Sources */,
 				3CBB32AF28B610C600611A7D /* ReuseHeaderView.swift in Sources */,
 				3CBB32B628B6468800611A7D /* HotSalesHeaderView.swift in Sources */,
+				3CAD9A1E28BA3AE9005EB383 /* ProductDetailsController.swift in Sources */,
 				3CBB32C328B691E700611A7D /* UIButton + extension.swift in Sources */,
+				3CAD9A0528B8FF55005EB383 /* UIView + extension.swift in Sources */,
 				3CCE190D28B3A30E009B864A /* AppDelegate.swift in Sources */,
 				3CCE191728B3A30E009B864A /* GadgetMarketTestApp.xcdatamodeld in Sources */,
 				3CCE190F28B3A30E009B864A /* SceneDelegate.swift in Sources */,
 				3CBB32BE28B66B5F00611A7D /* LayoutCreationService.swift in Sources */,
+				3CAD9A1528BA1C79005EB383 /* UINavigationController + extension.swift in Sources */,
 				3CBB32B128B62BD700611A7D /* MainViewController.swift in Sources */,
 				3CBB32AB28B3DF4C00611A7D /* HotSalesCell.swift in Sources */,
 				3CBB32C128B6713D00611A7D /* CustomTabBarView.swift in Sources */,
+				3C817E1E28B6D4CC00EF7094 /* URLs.swift in Sources */,
 				3CBB32B928B6519B00611A7D /* UILabel + extension.swift in Sources */,
 				3CBB32BB28B6575B00611A7D /* UIColor + extension.swift in Sources */,
+				3CAD9A0F28B97687005EB383 /* UITextField + extension.swift in Sources */,
+				3C817E1C28B6C43900EF7094 /* UICollectionView + extension.swift in Sources */,
+				3CAD99FF28B8C714005EB383 /* FilterOptionsViewController.swift in Sources */,
+				3C817E2928B7A36B00EF7094 /* String + extension.swift in Sources */,
 				3CBB32A928B3D6F400611A7D /* SelectCategoryCell.swift in Sources */,
+				3CAD9A2028BA65DB005EB383 /* MainCollectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

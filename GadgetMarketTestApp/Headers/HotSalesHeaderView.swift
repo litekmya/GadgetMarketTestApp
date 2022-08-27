@@ -38,6 +38,7 @@ class HotSalesHeaderView: UICollectionReusableView {
         let button = UIButton()
         button.setTitle("see more", for: .normal)
         button.setTitleColor(UIColor.newOrange, for: .normal)
+        button.titleLabel?.font = UIFont.installMarkProFont(for: 15)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()

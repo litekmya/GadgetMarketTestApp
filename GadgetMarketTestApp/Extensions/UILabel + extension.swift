@@ -11,7 +11,7 @@ extension UILabel {
     
     func setupForSection(title: String) {
         text = title
-        font = UIFont.systemFont(ofSize: 25, weight: .medium)
+        font = UIFont.installMarkProFont(for: 25)
         translatesAutoresizingMaskIntoConstraints = false
     }
 }

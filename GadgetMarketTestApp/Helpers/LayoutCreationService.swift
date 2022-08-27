@@ -48,7 +48,6 @@ class LayoutCreationService {
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
                                                heightDimension: .absolute(182))
-        print(groupSize.widthDimension)
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         
         let section = NSCollectionLayoutSection(group: group)
@@ -70,7 +69,7 @@ class LayoutCreationService {
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(500))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         group.contentInsets.leading = 6
-        group.contentInsets.trailing = 35
+        group.contentInsets.trailing = 21
         
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = NSDirectionalEdgeInsets(top: 18, leading: 0, bottom: 24, trailing: 0)
@@ -86,4 +85,3 @@ class LayoutCreationService {
         return section
     }
 }
-// 11 - 32 - 16

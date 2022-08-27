@@ -59,6 +59,7 @@ class CustomTabBarView: UIView {
         backgroundColor = UIColor.newDarkBlue
         clipsToBounds = true
         layer.cornerRadius = 30
+        translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(pointView)
         addSubview(label)
@@ -69,6 +70,13 @@ class CustomTabBarView: UIView {
         setupPointView()
         setupLabel()
         setupButtons()
+    }
+    
+    func setupLayout(parentView: UIView) {
+        leadingAnchor.constraint(equalTo: parentView.leadingAnchor).isActive = true
+        trailingAnchor.constraint(equalTo: parentView.trailingAnchor).isActive = true
+        bottomAnchor.constraint(equalTo: parentView.bottomAnchor).isActive = true
+        heightAnchor.constraint(equalToConstant: 72).isActive = true
     }
     
     private func setupPointView() {
