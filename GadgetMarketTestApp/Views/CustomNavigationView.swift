@@ -67,7 +67,7 @@ class CustomNavigationView: UIView {
     func useWithOneButton(title: String) {
         useWithTwoButtons(title: title)
         
-        doneButton.setImage(UIImage(named: "cart"), for: .normal)
+        doneButton.setImage(UIImage(named: "favoriteDark"), for: .normal)
         dismissButton.isHidden = true
         titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 38).isActive = true
         titleLabel.font = UIFont.installMarkProFont(for: 24)

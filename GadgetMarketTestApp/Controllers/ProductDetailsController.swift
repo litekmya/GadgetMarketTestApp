@@ -19,6 +19,7 @@ class ProductDetailsController: UIViewController {
         setupView()
         setupNavigationView()
         setupContentView()
+        getData()
     }
     
     private func setupView() {
@@ -41,5 +42,14 @@ class ProductDetailsController: UIViewController {
         contentView.clipsToBounds = true
         contentView.layer.cornerRadius = 30
         contentView.backgroundColor = .white
+    }
+    
+    private func getData() {
+        NetworkManager.shared.fetchData(from: URLs.details.rawValue, type: Phone.self) { models in
+            DispatchQueue.main.async {
+                print(models)
+            }
+            
+        }
     }
 }

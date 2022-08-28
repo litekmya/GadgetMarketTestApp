@@ -13,7 +13,7 @@ class NetworkManager {
     
     private init() {}
     
-    func fetchData(from urlString: String, with completion: @escaping(StoreModel) -> Void) {
+    func fetchData<T: Decodable>(from urlString: String, type: T.Type, with completion: @escaping(T) -> Void) {
         guard let url = URL(string: urlString) else { return }
         
         URLSession.shared.dataTask(with: url) { data, _, error in
@@ -25,7 +25,7 @@ class NetworkManager {
             guard let data = data else { return }
             
             do {
-                let model = try JSONDecoder().decode(StoreModel.self, from: data)
+                let model = try JSONDecoder().decode(T.self, from: data)
                 completion(model)
             } catch let error {
                 print("Ошибка при парсинге JSON: \(error)")

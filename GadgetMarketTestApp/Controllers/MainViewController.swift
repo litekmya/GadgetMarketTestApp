@@ -55,7 +55,7 @@ class MainViewController: UIViewController {
     }
     
     private func getDataFromNetwork() {
-        NetworkManager.shared.fetchData(from: URLs.main.rawValue) { models in
+        NetworkManager.shared.fetchData(from: URLs.main.rawValue, type: StoreModel.self) { models in
             DispatchQueue.main.async { [unowned self] in
                 customCollectionView.models = models
                 customCollectionView.reloadData()
