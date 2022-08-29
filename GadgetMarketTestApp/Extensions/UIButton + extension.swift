@@ -14,4 +14,11 @@ extension UIButton {
         setTitleColor(UIColor.white, for: .normal)
         translatesAutoresizingMaskIntoConstraints = false
     }
+    
+    func setupForSetColorView(at radius: CGFloat) {
+        translatesAutoresizingMaskIntoConstraints = false
+        backgroundColor = .red
+        clipsToBounds = true
+        layer.cornerRadius = radius
+    }
 }

@@ -64,8 +64,8 @@ class CustomNavigationView: UIView {
         titleLabel.text = title
     }
     
-    func useWithOneButton(title: String) {
-        useWithTwoButtons(title: title)
+    func useWithOneButton() {
+        useWithTwoButtons(title: "title")
         
         doneButton.setImage(UIImage(named: "favoriteDark"), for: .normal)
         dismissButton.isHidden = true

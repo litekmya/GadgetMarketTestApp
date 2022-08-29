@@ -9,10 +9,12 @@ import UIKit
 
 class ProductDetailsController: UIViewController {
     
+    //MARK: - Private properties
     private let navigationView = CustomNavigationView()
 //    private let collectionView = UICollectionView() // заменить на кастомный
     private let contentView = ProductDetailsView()
     
+    //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -20,8 +22,10 @@ class ProductDetailsController: UIViewController {
         setupNavigationView()
         setupContentView()
         getData()
+        addTargets()
     }
     
+    //MARK: - Private methods
     private func setupView() {
         view.backgroundColor = .newGray
         view.addSubview(contentView)
@@ -46,10 +50,35 @@ class ProductDetailsController: UIViewController {
     
     private func getData() {
         NetworkManager.shared.fetchData(from: URLs.details.rawValue, type: Phone.self) { models in
-            DispatchQueue.main.async {
-                print(models)
+            DispatchQueue.main.async { [unowned self] in
+                self.contentView.navigationView.titleLabel.text = models.title
+                
+                let titles = [models.CPU, models.camera, models.ssd, models.sd]
+                self.contentView.infoView.titles = titles
+                
+                contentView.setColorView.firstColorButton.backgroundColor
             }
-            
         }
+    }
+    
+    private func addTargets() {
+        navigationView.dismissButton.addTarget(self, action: #selector(dismissButtonAction), for: .touchUpInside)
+        contentView.setColorView.firstColorButton.addTarget(self, action: #selector(firstColorButtonAction), for: .touchUpInside)
+        contentView.setColorView.secondColorButton.addTarget(self, action: #selector(secondColorButtonAction), for: .touchUpInside)
+    }
+    
+    //MARK: - @objc
+    @objc private func dismissButtonAction() {
+        dismiss(animated: true)
+    }
+    
+    @objc private func firstColorButtonAction() {
+        contentView.setColorView.secondColorButton.imageView?.isHidden = true
+        contentView.setColorView.firstColorButton.imageView?.isHidden = false
+    }
+    
+    @objc private func secondColorButtonAction() {
+        contentView.setColorView.firstColorButton.imageView?.isHidden = true
+        contentView.setColorView.secondColorButton.imageView?.isHidden = false
     }
 }

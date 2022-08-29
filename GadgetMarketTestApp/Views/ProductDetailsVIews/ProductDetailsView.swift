@@ -11,7 +11,6 @@ class ProductDetailsView: UIView {
     
     let navigationView = CustomNavigationView()
     var ratingView: UIStackView!
-    var ratingImages: [UIImageView] = []
     
     let segmentedControl: HBSegmentedControl = {
         let control = HBSegmentedControl()
@@ -22,10 +21,19 @@ class ProductDetailsView: UIView {
         control.translatesAutoresizingMaskIntoConstraints = false
         return control
     }()
-    let infoView = UIStackView()
     
-    let setColorView = UIView()
+    let infoView = InformationView()
+    let setColorView = SetColorView()
     
+    let addToCartButton: UIButton = {
+        let button = UIButton()
+        
+        return button
+    }()
+    
+    var images: [UIImageView] = []
+    
+    //MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         customizeUI()
@@ -38,18 +46,70 @@ class ProductDetailsView: UIView {
     
     private func customizeUI() {
         addSubview(navigationView)
+        addSubview(segmentedControl)
+        addSubview(infoView)
+        addSubview(setColorView)
         
         setupNavigationView()
-        setupRatingStackView()
+        setupRatingView()
         setupSegmentedControl()
+        setupInfoView()
+        setupSetColorView()
     }
     
     private func setupNavigationView() {
         navigationView.configureLayoutForView(parentView: self, topConstant: 0)
-        navigationView.useWithOneButton(title: "Galaxy Note 20 Ultra")
+        navigationView.useWithOneButton()
     }
     
-    private func setupRatingStackView() {
+    private func setupRatingView() {
+        images = createImageViews()
+        
+        ratingView = UIStackView(arrangedSubviews: images)
+        ratingView.distribution = .fillProportionally
+        ratingView.spacing = 9
+        ratingView.axis = .horizontal
+        addSubview(ratingView)
+        
+        ratingView.translatesAutoresizingMaskIntoConstraints = false
+        ratingView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 38).isActive = true
+        ratingView.topAnchor.constraint(equalTo: navigationView.bottomAnchor, constant: 7).isActive = true
+    }
+    
+    private func setupInfoView() {
+        setupXCoordinate(subview: infoView, leading: 30, trailing: -30)
+        setupYCoordinate(subview: infoView,
+                         top: 33,
+                         topView: segmentedControl.bottomAnchor,
+                         height: 50)
+    }
+    
+    private func setupSetColorView() {
+        setupXCoordinate(subview: setColorView, leading: 30, trailing: -30)
+        setupYCoordinate(subview: setColorView,
+                         top: 29,
+                         topView: infoView.bottomAnchor,
+                         height: 76)
+    }
+    
+    private func setupSegmentedControl() {
+        setupXCoordinate(subview: segmentedControl, leading: 27, trailing: -27)
+        segmentedControl.topAnchor.constraint(equalTo: ratingView.bottomAnchor, constant: 32).isActive = true
+    }
+    
+    private func setupXCoordinate(subview: UIView, leading: CGFloat, trailing: CGFloat) {
+        subview.translatesAutoresizingMaskIntoConstraints = false
+        subview.leadingAnchor.constraint(equalTo: leadingAnchor, constant: leading).isActive = true
+        subview.trailingAnchor.constraint(equalTo: trailingAnchor, constant: trailing).isActive = true
+    }
+    
+    private func setupYCoordinate(subview: UIView, top: CGFloat, topView: NSLayoutYAxisAnchor, height: CGFloat) {
+        subview.topAnchor.constraint(equalTo: topView, constant: top).isActive = true
+        subview.heightAnchor.constraint(equalToConstant: height).isActive = true
+    }
+    
+    private func createImageViews() -> [UIImageView] {
+        var images: [UIImageView] = []
         for _ in 0..<5 {
             let imageView = UIImageView()
             imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -57,21 +117,9 @@ class ProductDetailsView: UIView {
             imageView.widthAnchor.constraint(equalToConstant: 18).isActive = true
             imageView.image = UIImage(systemName: "star")
             imageView.tintColor = .newLightOrange
-            ratingImages.append(imageView)
+            images.append(imageView)
         }
         
-        ratingView = UIStackView(arrangedSubviews: ratingImages)
-        ratingView.spacing = 9
-        addSubview(ratingView)
-        ratingView.translatesAutoresizingMaskIntoConstraints = false
-        ratingView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 38).isActive = true
-        ratingView.topAnchor.constraint(equalTo: navigationView.bottomAnchor, constant: 7).isActive = true
-    }
-    
-    private func setupSegmentedControl() {
-        addSubview(segmentedControl)
-        segmentedControl.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 27).isActive = true
-        segmentedControl.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -27).isActive = true
-        segmentedControl.topAnchor.constraint(equalTo: ratingView.bottomAnchor, constant: 32).isActive = true
+        return images
     }
 }

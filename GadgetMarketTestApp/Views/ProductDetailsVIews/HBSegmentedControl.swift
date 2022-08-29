@@ -10,6 +10,7 @@ import UIKit
 @IBDesignable public class HBSegmentedControl: UIControl {
     
     fileprivate var labels = [UILabel]()
+    fileprivate var lineViews = [UIView]()
     private var thumbView = UIView()
     
     public var items: [String] = ["Item 1", "Item 2", "Item 3"] {
@@ -71,7 +72,13 @@ import UIKit
             label.removeFromSuperview()
         }
         
+        for view in lineViews {
+            view.removeFromSuperview()
+        }
+        
         labels.removeAll(keepingCapacity: true)
+        lineViews.removeAll(keepingCapacity: true)
+        
         for index in 1...items.count {
             let label = UILabel()
             label.text = items[index - 1]
@@ -95,6 +102,8 @@ import UIKit
             
             addSubview(label)
             labels.append(label)
+            lineViews.append(lineView)
+            
         }
         
         addIndividualItemConstraints(labels, mainView: self)
@@ -106,6 +115,10 @@ import UIKit
         if labels.count > 0 {
             let label = labels[selectedIndex]
             label.textColor = selectedLabelColor
+            
+            let lineView = lineViews[selectedIndex]
+            lineView.isHidden = false
+            
             thumbView.frame = label.frame
             thumbView.backgroundColor = thumbColor
             thumbView.layer.cornerRadius = thumbView.frame.height / 2
@@ -134,9 +147,16 @@ import UIKit
         for (_, item) in labels.enumerated() {
             item.textColor = unselectedLabelColor
         }
+        for (_, item) in lineViews.enumerated() {
+            item.isHidden = true
+        }
         
         let label = labels[selectedIndex]
         label.textColor = selectedLabelColor
+        
+        let lineView = lineViews[selectedIndex]
+        lineView.isHidden = false
+        
         UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.8, animations: {
             self.thumbView.frame = label.frame
         }, completion: nil)
