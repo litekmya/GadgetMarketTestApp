@@ -17,7 +17,6 @@ class ProductDetailsView: UIView {
         control.items = ["Shop", "Details", "Features"]
         control.borderColor = .clear
         control.font = UIFont.installMarkProFont(for: 20)
-        
         control.translatesAutoresizingMaskIntoConstraints = false
         return control
     }()
@@ -27,7 +26,7 @@ class ProductDetailsView: UIView {
     
     let addToCartButton: UIButton = {
         let button = UIButton()
-        
+        button.setupForAddToCart(price: "$1500")
         return button
     }()
     
@@ -49,12 +48,14 @@ class ProductDetailsView: UIView {
         addSubview(segmentedControl)
         addSubview(infoView)
         addSubview(setColorView)
+        addSubview(addToCartButton)
         
         setupNavigationView()
         setupRatingView()
         setupSegmentedControl()
         setupInfoView()
         setupSetColorView()
+        setupAddToCartButton()
     }
     
     private func setupNavigationView() {
@@ -74,6 +75,15 @@ class ProductDetailsView: UIView {
         ratingView.translatesAutoresizingMaskIntoConstraints = false
         ratingView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 38).isActive = true
         ratingView.topAnchor.constraint(equalTo: navigationView.bottomAnchor, constant: 7).isActive = true
+    }
+    
+    private func setupAddToCartButton() {
+        addToCartButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 29).isActive = true
+        addToCartButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -29).isActive = true
+        addToCartButton.topAnchor.constraint(equalTo: setColorView.bottomAnchor, constant: 32).isActive = true
+        addToCartButton.heightAnchor.constraint(equalToConstant: 54).isActive = true
+        addToCartButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -40).isActive = true
+
     }
     
     private func setupInfoView() {
@@ -119,7 +129,6 @@ class ProductDetailsView: UIView {
             imageView.tintColor = .newLightOrange
             images.append(imageView)
         }
-        
         return images
     }
 }

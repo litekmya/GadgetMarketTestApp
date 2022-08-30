@@ -34,14 +34,14 @@ class SetColorView: UIView {
     let firstCapacityButton: UIButton = {
         let button = UIButton()
         button.setupForSetColorView(at: 10)
-        button.titleLabel?.font = .installMarkProFont(for: 13)
         button.setTitle("128GB", for: .normal)
+        button.backgroundColor = .newOrange
+        button.setTitleColor(.white, for: .normal)
         return button
     }()
     let secondCapacityButton: UIButton = {
         let button = UIButton()
         button.setupForSetColorView(at: 10)
-        button.titleLabel?.font = .installMarkProFont(for: 13)
         button.setTitle("128GB", for: .normal)
         return button
     }()
@@ -107,7 +107,7 @@ class SetColorView: UIView {
                            trailingView: secondCapacityButton.leadingAnchor,
                            trailing: -21,
                            topView: titleLabel.bottomAnchor,
-                           top: 17)
+                           top: 19)
         setup(button: firstCapacityButton, width: 69, height: 31)
     }
     
