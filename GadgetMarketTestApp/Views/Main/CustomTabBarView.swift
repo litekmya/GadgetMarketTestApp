@@ -59,6 +59,7 @@ class CustomTabBarView: UIView {
         backgroundColor = UIColor.newDarkBlue
         clipsToBounds = true
         layer.cornerRadius = 30
+        layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(pointView)

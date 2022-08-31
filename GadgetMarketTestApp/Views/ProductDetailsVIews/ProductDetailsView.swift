@@ -44,6 +44,11 @@ class ProductDetailsView: UIView {
     }
     
     private func customizeUI() {
+        clipsToBounds = true
+        layer.cornerRadius = 30
+        layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        backgroundColor = .white
+        
         addSubview(navigationView)
         addSubview(segmentedControl)
         addSubview(infoView)

@@ -32,6 +32,7 @@ class CustomNavigationView: UIView {
         label.font = UIFont.installMarkProFont(for: 18)
         label.text = "Filter options"
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
         return label
     }()
     
@@ -53,8 +54,8 @@ class CustomNavigationView: UIView {
         heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
     
-    func useWithTwoButtons(title: String) {
-        doneButton.setImage(UIImage(named: "cart"), for: .normal)
+    func useWithTwoButtons(title: String, imageName: String) {
+        doneButton.setImage(UIImage(named: imageName), for: .normal)
         doneButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -35).isActive = true
         doneButton.centerYAnchor.constraint(equalTo: dismissButton.centerYAnchor).isActive = true
         doneButton.heightAnchor.constraint(equalToConstant: 37).isActive = true
@@ -65,7 +66,7 @@ class CustomNavigationView: UIView {
     }
     
     func useWithOneButton() {
-        useWithTwoButtons(title: "title")
+        useWithTwoButtons(title: "title", imageName: "")
         
         doneButton.setImage(UIImage(named: "favoriteDark"), for: .normal)
         dismissButton.isHidden = true
@@ -73,6 +74,7 @@ class CustomNavigationView: UIView {
         titleLabel.font = UIFont.installMarkProFont(for: 24)
     }
     
+    //MARK: - Private methods
     private func customizeUI() {
         addSubview(dismissButton)
         addSubview(doneButton)
@@ -96,6 +98,7 @@ class CustomNavigationView: UIView {
     
     private func setupTitle() {
         titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        titleLabel.trailingAnchor.constraint(equalTo: doneButton.leadingAnchor, constant: -8).isActive = true
         titleLabel.centerYAnchor.constraint(equalTo: dismissButton.centerYAnchor).isActive = true
     }
 }

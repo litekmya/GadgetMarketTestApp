@@ -13,8 +13,8 @@ class MainCollectionView: UICollectionView {
     static let hotSalesHeaderID = "hotSalesHeaderID"
     
     var mainDelegate: MainCollectionViewDelegate!
-    
     var models: StoreModel?
+    
     private let whiteIconsModels = SelectCategoryIcons.getDataWithWhiteIcons()
     private let grayIconsModels = SelectCategoryIcons.getData()
     private var isSelected = false
