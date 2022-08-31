@@ -50,7 +50,7 @@ class CustomNavigationView: UIView {
         leadingAnchor.constraint(equalTo: parentView.leadingAnchor).isActive = true
         trailingAnchor.constraint(equalTo: parentView.trailingAnchor).isActive = true
         topAnchor.constraint(equalTo: parentView.topAnchor, constant: topConstant).isActive = true
-        heightAnchor.constraint(equalToConstant: 60).isActive = true
+        heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
     
     func useWithTwoButtons(title: String) {

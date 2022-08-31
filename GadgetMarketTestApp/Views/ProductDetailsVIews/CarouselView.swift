@@ -10,10 +10,21 @@ import HSCycleGalleryView
 
 class CarouselView: UIView {
     
+    var images: [UIImage] = [] {
+        didSet {
+            galleryView.reloadData()
+        }
+    }
+    
     let galleryView: HSCycleGalleryView = {
-        let view = HSCycleGalleryView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 2 - 140))
-        print(UIScreen.main.bounds.height / 2 - 200)
+        let view = HSCycleGalleryView(frame: CGRect(
+            x: 0,
+            y: 0,
+            width: UIScreen.main.bounds.width,
+            height: UIScreen.main.bounds.height / 2.8)
+        )
         view.autoScrollInterval = 0
+        view.contentBackgroundColor = .newGray
         return view
     }()
     
@@ -38,12 +49,25 @@ class CarouselView: UIView {
 extension CarouselView: HSCycleGalleryViewDelegate {
     
     func numberOfItemInCycleGalleryView(_ cycleGalleryView: HSCycleGalleryView) -> Int {
-        return 3
+        if images.count == 0 {
+            return 4
+        } else {
+            return images.count
+        }
+        
     }
     
     func cycleGalleryView(_ cycleGalleryView: HSCycleGalleryView, cellForItemAtIndex index: Int) -> UICollectionViewCell {
         let cell = cycleGalleryView.dequeueReusableCell(withIdentifier: ProductDetailsCell.identifier, for: IndexPath(item: index, section: 0)) as! ProductDetailsCell
-        cell.backgroundColor = .red
+        if images.count == 0 {
+            return cell
+        }
+        
+        let image = images[index]
+        
+        cell.mainImageView.image = image
+        cell.clipsToBounds = true
+        cell.layer.cornerRadius = 20
         return cell
     }
 }

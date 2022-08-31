@@ -7,46 +7,55 @@
 
 import UIKit
 
-class ProductDetailsController: UIViewController {
+class ProductDetailsController: UIViewController, UIScrollViewDelegate {
     
     //MARK: - Private properties
     private let scrollView = UIScrollView()
+    private let scrollContentView = UIView()
     private let navigationView = CustomNavigationView()
     private let carouselView = CarouselView()
     private let contentView = ProductDetailsView()
-    
-    private let addToCartButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupView()
+        view.addSubview(scrollView)
+        view.backgroundColor = .newGray
+        
+        setupScrollView()
+        setupScrollContentView()
         setupNavigationView()
         setupCarouselView()
         setupContentView()
         getData()
         addTargets()
-        
-//        collectionView.set(photos: <#T##[UIImage]#>) исправить после получения данных
     }
     
     //MARK: - Layout
-    private func setupView() {
+    private func setupScrollView() {
+        scrollView.addSubview(scrollContentView)
+        scrollView.delegate = self
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
+        scrollView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+    }
+    
+    private func setupScrollContentView() {
+        scrollContentView.addSubview(contentView)
+        scrollContentView.addSubview(navigationView)
+        scrollContentView.addSubview(carouselView)
         
-        view.backgroundColor = .newGray
-        view.addSubview(contentView)
-        view.addSubview(navigationView)
-        view.addSubview(carouselView)
+        scrollContentView.translatesAutoresizingMaskIntoConstraints = false
+        scrollContentView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        scrollContentView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        scrollContentView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
+        scrollContentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
+        scrollView.contentSize = scrollContentView.frame.size
     }
     
     private func setupNavigationView() {
-        navigationView.configureLayoutForView(parentView: view, topConstant: 42)
+        navigationView.configureLayoutForView(parentView: scrollContentView, topConstant: 42)
         navigationView.useWithTwoButtons(title: "Product Details")
     }
     
@@ -55,17 +64,18 @@ class ProductDetailsController: UIViewController {
         carouselView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         carouselView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         carouselView.topAnchor.constraint(equalTo: navigationView.bottomAnchor, constant: 30).isActive = true
-        carouselView.heightAnchor.constraint(equalToConstant: view.frame.height / 2 - 140).isActive = true
-        carouselView.backgroundColor = .green
-        print("===================Размер VC - \(view.frame.height / 2 - 140)")
+        carouselView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 2.8).isActive = true
+        print(UIScreen.main.bounds.height)
+        print(UIScreen.main.bounds.height / 2.8)
     }
     
     private func setupContentView() {
         contentView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        contentView.topAnchor.constraint(equalTo: carouselView.bottomAnchor).isActive = true
+        contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
         contentView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         contentView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        contentView.heightAnchor.constraint(equalToConstant: view.bounds.height / 2).isActive = true
+        contentView.heightAnchor.constraint(equalToConstant: 470).isActive = true
         contentView.clipsToBounds = true
         contentView.layer.cornerRadius = 30
         contentView.backgroundColor = .white
@@ -73,22 +83,39 @@ class ProductDetailsController: UIViewController {
     
     //MARK: - Private methods
     private func getData() {
-        NetworkManager.shared.fetchData(from: URLs.details.rawValue, type: Phone.self) { models in
+        NetworkManager.shared.fetchData(from: URLs.details.rawValue, type: Phone.self) { model in
             DispatchQueue.main.async { [unowned self] in
-                self.contentView.navigationView.titleLabel.text = models.title
+                self.contentView.navigationView.titleLabel.text = model.title
                 
-                let titles = [models.CPU, models.camera, models.ssd, models.sd]
+                let titles = [model.CPU, model.camera, model.ssd, model.sd]
                 self.contentView.infoView.titles = titles
                 
-                guard let firstColor = models.color.first else { return }
-                guard let secondColor = models.color.last else { return }
+                guard let firstColor = model.color.first else { return }
+                guard let secondColor = model.color.last else { return }
                 contentView.setColorView.firstColorButton.backgroundColor = UIColor(hex: firstColor)
                 contentView.setColorView.secondColorButton.backgroundColor = UIColor(hex: secondColor)
                 
-                guard let firstTitle = models.capacity.first else { return }
-                guard let secondTitle = models.capacity.last else { return }
+                guard let firstTitle = model.capacity.first else { return }
+                guard let secondTitle = model.capacity.last else { return }
                 contentView.setColorView.firstCapacityButton.setTitle("\(firstTitle) GB", for: .normal)
                 contentView.setColorView.secondCapacityButton.setTitle("\(secondTitle) GB", for: .normal)
+                
+                var capacityButtons: [UIButton] = []
+                capacityButtons.append(contentView.setColorView.firstCapacityButton)
+                capacityButtons.append(contentView.setColorView.secondCapacityButton)
+                
+                for index in 0..<model.capacity.count {
+                    capacityButtons[index].titleLabel?.text = model.capacity[index]
+                }
+                
+                for index in 0..<model.images.count {
+                    ImageManager.shared.getImage(from: model.images[index]) { image in
+                        DispatchQueue.main.async { [unowned self] in
+                            self.carouselView.images.append(image)
+                        }
+                    }
+                }
+                
             }
         }
     }

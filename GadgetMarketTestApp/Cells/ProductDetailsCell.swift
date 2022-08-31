@@ -12,9 +12,17 @@ class ProductDetailsCell: UICollectionViewCell {
     static let identifier = "ProductDetailsCell"
     
     let mainImageView: UIImageView = {
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 130, height: UIScreen.main.bounds.height / 2 - 100))
+        let imageView = UIImageView(frame: CGRect(
+            x: 0,
+            y: 0,
+            width: UIScreen.main.bounds.width / 1.4,
+            height: UIScreen.main.bounds.height / 2.14)
+        )
 
-        imageView.backgroundColor = .yellow
+        imageView.backgroundColor = .white
+        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 20
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     

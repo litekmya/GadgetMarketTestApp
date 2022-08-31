@@ -80,7 +80,7 @@ class ProductDetailsView: UIView {
     private func setupAddToCartButton() {
         addToCartButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 29).isActive = true
         addToCartButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -29).isActive = true
-        addToCartButton.topAnchor.constraint(equalTo: setColorView.bottomAnchor, constant: 32).isActive = true
+        addToCartButton.topAnchor.constraint(equalTo: setColorView.bottomAnchor, constant: 24).isActive = true
         addToCartButton.heightAnchor.constraint(equalToConstant: 54).isActive = true
         addToCartButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -40).isActive = true
 
@@ -89,7 +89,7 @@ class ProductDetailsView: UIView {
     private func setupInfoView() {
         setupXCoordinate(subview: infoView, leading: 30, trailing: -30)
         setupYCoordinate(subview: infoView,
-                         top: 33,
+                         top: 24,
                          topView: segmentedControl.bottomAnchor,
                          height: 50)
     }
@@ -97,7 +97,7 @@ class ProductDetailsView: UIView {
     private func setupSetColorView() {
         setupXCoordinate(subview: setColorView, leading: 30, trailing: -30)
         setupYCoordinate(subview: setColorView,
-                         top: 29,
+                         top: 24,
                          topView: infoView.bottomAnchor,
                          height: 76)
     }

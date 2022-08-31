@@ -90,6 +90,4 @@ extension MainViewController: MainCollectionViewDelegate {
         
         present(productDetailsVC, animated: true)
     }
-    
-    
 }
