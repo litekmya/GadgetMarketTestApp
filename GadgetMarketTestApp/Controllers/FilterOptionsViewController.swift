@@ -105,7 +105,7 @@ extension FilterOptionsViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FilterOptionsCell.identifier, for: indexPath) as! FilterOptionsCell
         let model = models[indexPath.row]
-        cell.textField.text = "Samsung"
+        cell.textField.text = model.value
         cell.titleLabel.text = model.title
         cell.textField.delegate = self
         cell.selectionStyle = .none
