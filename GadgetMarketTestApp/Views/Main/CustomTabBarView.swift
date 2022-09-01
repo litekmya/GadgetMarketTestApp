@@ -9,6 +9,7 @@ import UIKit
 
 class CustomTabBarView: UIView {
     
+    //MARK: - Public properties
     let pointView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 4
@@ -16,8 +17,7 @@ class CustomTabBarView: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
-    let label: UILabel = {
+    let explorerLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         label.text = "Explorer"
@@ -25,34 +25,45 @@ class CustomTabBarView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
     let cartButton: UIButton = {
         let button = UIButton()
         button.setupForCustomTabBar(at: "market")
         return button
     }()
-    
     let favoriteButton: UIButton = {
         let button = UIButton()
         button.setupForCustomTabBar(at: "favorite")
         return button
     }()
-    
     let userButton: UIButton = {
         let button = UIButton()
         button.setupForCustomTabBar(at: "user")
-        
         return button
     }()
+    let cauntValueLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .newOrange
+        label.font = .installMarkProFont(for: 15)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
     
+    //MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         customizeUI()
     }
     
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        customizeUI()
+    required init(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    //MARK: - Layout
+    func setupLayout(parentView: UIView) {
+        leadingAnchor.constraint(equalTo: parentView.leadingAnchor).isActive = true
+        trailingAnchor.constraint(equalTo: parentView.trailingAnchor).isActive = true
+        bottomAnchor.constraint(equalTo: parentView.bottomAnchor).isActive = true
+        heightAnchor.constraint(equalToConstant: 72).isActive = true
     }
     
     private func customizeUI() {
@@ -63,7 +74,7 @@ class CustomTabBarView: UIView {
         translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(pointView)
-        addSubview(label)
+        addSubview(explorerLabel)
         addSubview(cartButton)
         addSubview(favoriteButton)
         addSubview(userButton)
@@ -71,13 +82,7 @@ class CustomTabBarView: UIView {
         setupPointView()
         setupLabel()
         setupButtons()
-    }
-    
-    func setupLayout(parentView: UIView) {
-        leadingAnchor.constraint(equalTo: parentView.leadingAnchor).isActive = true
-        trailingAnchor.constraint(equalTo: parentView.trailingAnchor).isActive = true
-        bottomAnchor.constraint(equalTo: parentView.bottomAnchor).isActive = true
-        heightAnchor.constraint(equalToConstant: 72).isActive = true
+        configureCartButton()
     }
     
     private func setupPointView() {
@@ -88,17 +93,28 @@ class CustomTabBarView: UIView {
     }
     
     private func setupLabel() {
-        label.leadingAnchor.constraint(equalTo: pointView.trailingAnchor, constant: 7).isActive = true
-        label.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        explorerLabel.leadingAnchor.constraint(equalTo: pointView.trailingAnchor, constant: 7).isActive = true
+        explorerLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
     
     private func setupButtons() {
-        cartButton.leadingAnchor.constraint(equalTo: label.trailingAnchor, constant: 47).isActive = true
-        cartButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        setSize(for: cartButton, leftView: explorerLabel)
+        setSize(for: favoriteButton, leftView: cartButton)
+        setSize(for: userButton, leftView: favoriteButton)
+    }
+    
+    private func configureCartButton() {
+        cartButton.addSubview(cauntValueLabel)
         
-        favoriteButton.leadingAnchor.constraint(equalTo: cartButton.trailingAnchor, constant: 52).isActive = true
-        favoriteButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        
-        userButton.leadingAnchor.constraint(equalTo: favoriteButton.trailingAnchor, constant: 52).isActive = true
-        userButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-    }}
+        cauntValueLabel.trailingAnchor.constraint(equalTo: cartButton.trailingAnchor, constant: 6).isActive = true
+        cauntValueLabel.topAnchor.constraint(equalTo: cartButton.topAnchor, constant: -6).isActive = true
+    }
+    
+    //MARK: - Private methods
+    private func setSize(for button: UIButton, leftView: UIView) {
+        button.leadingAnchor.constraint(equalTo: leftView.trailingAnchor, constant: 47).isActive = true
+        button.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        button.heightAnchor.constraint(equalToConstant: 18).isActive = true
+        button.widthAnchor.constraint(equalToConstant: 18).isActive = true
+    }
+}

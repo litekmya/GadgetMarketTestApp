@@ -9,7 +9,20 @@ import UIKit
 
 class MyCartView: UIView {
     
-    let cartTableView: UITableView = UITableView(frame: .zero, style: .grouped)
+    //MARK: - Public properties
+    var phones: [Phone] = [] {
+        didSet {
+            getTotalPrice()
+        }
+    }
+    let cartTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.backgroundColor = .newDarkBlue
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        return tableView
+    }()
+    
+    let totalView = TotalView()
     
     let checkoutButton: UIButton = {
         let button = UIButton()
@@ -21,18 +34,17 @@ class MyCartView: UIView {
         return button
     }()
     
-    let totalView = TotalView()
-    
+    //MARK: - LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         customizeUI()
     }
     
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        customizeUI()
+    required init(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Layout
     private func customizeUI() {
         backgroundColor = .newDarkBlue
         addSubview(checkoutButton)
@@ -42,6 +54,7 @@ class MyCartView: UIView {
         setupCheckoutButton()
         setupTotalView()
         setupTableView()
+        getTotalPrice()
     }
     
     private func setupCheckoutButton() {
@@ -59,7 +72,6 @@ class MyCartView: UIView {
     }
     
     private func setupTableView() {
-        cartTableView.translatesAutoresizingMaskIntoConstraints = false
         cartTableView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         cartTableView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         cartTableView.bottomAnchor.constraint(equalTo: totalView.topAnchor).isActive = true
@@ -68,22 +80,45 @@ class MyCartView: UIView {
         cartTableView.delegate = self
         cartTableView.dataSource = self
         cartTableView.register(MyCartCell.self, forCellReuseIdentifier: MyCartCell.indentifier)
-        cartTableView.backgroundColor = .newDarkBlue
+    }
+    
+    private func getTotalPrice() {
+        if phones.count != 0 {
+            var totalPrice = 0
+            
+            for phone in phones {
+                totalPrice += phone.price
+            }
+            
+            totalView.totalActiveLabel.text = "$\(totalPrice) us"
+        } else {
+            totalView.totalActiveLabel.text = "$0 us"
+        }
     }
 }
 
+//MARK: - UITableViewDelegate, UITableViewDataSource
 extension MyCartView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        10
+        phones.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MyCartCell.indentifier, for: indexPath) as! MyCartCell
-        cell.iconImageView.image = UIImage(systemName: "star")
-        cell.priceLabel.text = "$3000"
-        cell.titleLabel.text = "Samsung Note 20S Ultra"
+        let phone = phones[indexPath.row]
+        
+        cell.priceLabel.text = "$\(phone.price) us"
+        cell.titleLabel.text = phone.title
         cell.selectionStyle = .none
+        
+        guard let imageString = phone.images.first else { return cell }
+        
+        ImageManager.shared.getImage(from: imageString) { image in
+            DispatchQueue.main.async {
+                cell.iconImageView.image = image
+            }
+        }
         return cell
     }
     

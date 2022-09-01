@@ -40,7 +40,6 @@
 		3CAD9A1E28BA3AE9005EB383 /* ProductDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD9A1D28BA3AE9005EB383 /* ProductDetailsController.swift */; };
 		3CAD9A2028BA65DB005EB383 /* MainCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD9A1F28BA65DB005EB383 /* MainCollectionView.swift */; };
 		3CAD9A2228BA7CB0005EB383 /* ProductDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD9A2128BA7CB0005EB383 /* ProductDetailsView.swift */; };
-		3CAD9A2428BAA733005EB383 /* ProductDetailsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD9A2328BAA733005EB383 /* ProductDetailsCollectionView.swift */; };
 		3CAD9A2628BAF28A005EB383 /* Phone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD9A2528BAF28A005EB383 /* Phone.swift */; };
 		3CAD9A2C28BAFEE8005EB383 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD9A2B28BAFEE8005EB383 /* RatingView.swift */; };
 		3CBB32A928B3D6F400611A7D /* SelectCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBB32A828B3D6F400611A7D /* SelectCategoryCell.swift */; };
@@ -94,7 +93,6 @@
 		3CAD9A1D28BA3AE9005EB383 /* ProductDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsController.swift; sourceTree = "<group>"; };
 		3CAD9A1F28BA65DB005EB383 /* MainCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionView.swift; sourceTree = "<group>"; };
 		3CAD9A2128BA7CB0005EB383 /* ProductDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsView.swift; sourceTree = "<group>"; };
-		3CAD9A2328BAA733005EB383 /* ProductDetailsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsCollectionView.swift; sourceTree = "<group>"; };
 		3CAD9A2528BAF28A005EB383 /* Phone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Phone.swift; sourceTree = "<group>"; };
 		3CAD9A2B28BAFEE8005EB383 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		3CBB32A828B3D6F400611A7D /* SelectCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoryCell.swift; sourceTree = "<group>"; };
@@ -196,7 +194,6 @@
 			isa = PBXGroup;
 			children = (
 				3CAD9A2128BA7CB0005EB383 /* ProductDetailsView.swift */,
-				3CAD9A2328BAA733005EB383 /* ProductDetailsCollectionView.swift */,
 				3CAD9A2B28BAFEE8005EB383 /* RatingView.swift */,
 				3CAAC6FB28BBC94000440889 /* SetColorView.swift */,
 				3CAAC6FF28BBFDE200440889 /* HBSegmentedControl.swift */,
@@ -265,6 +262,7 @@
 		3CBB32BC28B66B0D00611A7D /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				3C817E1D28B6D4CC00EF7094 /* URLs.swift */,
 				3CBB32BD28B66B5F00611A7D /* LayoutCreationService.swift */,
 				3C0A532028BF7A20007252CF /* Constants.swift */,
 			);
@@ -274,7 +272,6 @@
 		3CBB32BF28B670D200611A7D /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				3C817E1D28B6D4CC00EF7094 /* URLs.swift */,
 				3C0A532428BF8481007252CF /* Main */,
 				3CAAC6FA28BBC90E00440889 /* ProductDetailsVIews */,
 				3C0A532528BF84C0007252CF /* MyCart */,
@@ -472,7 +469,6 @@
 				3CCE191728B3A30E009B864A /* GadgetMarketTestApp.xcdatamodeld in Sources */,
 				3CAD9A2228BA7CB0005EB383 /* ProductDetailsView.swift in Sources */,
 				3CCE190F28B3A30E009B864A /* SceneDelegate.swift in Sources */,
-				3CAD9A2428BAA733005EB383 /* ProductDetailsCollectionView.swift in Sources */,
 				3CBB32BE28B66B5F00611A7D /* LayoutCreationService.swift in Sources */,
 				3CAAC70528BCDB3200440889 /* InfoIcon.swift in Sources */,
 				3CAD9A1528BA1C79005EB383 /* UINavigationController + extension.swift in Sources */,

@@ -9,6 +9,7 @@ import UIKit
 
 class InformationView: UIView {
     
+    //MARK: - Public properties
     var iconsStackView: UIStackView!
     var labelsStackView: UIStackView!
     
@@ -19,22 +20,22 @@ class InformationView: UIView {
         }
     }
     
+    //MARK: - Private properties
     private let models = InfoIcon.getIcons()
     
+    //MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         iconsStackView = setup(subiews: createIconViews())
         iconsStackView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        
-//        labelsStackView = setup(subiews: createInfoLabels())
-//        labelsStackView.topAnchor.constraint(equalTo: iconsStackView.bottomAnchor, constant: 5).isActive = true
     }
     
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Layout
     private func setup(subiews: [UIView]) -> UIStackView {
         let stackView = UIStackView(arrangedSubviews: subiews)
         stackView.distribution = .fillEqually
@@ -77,6 +78,4 @@ class InformationView: UIView {
         
         return infoLabels
     }
-    
-    
 }

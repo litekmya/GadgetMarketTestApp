@@ -16,7 +16,6 @@ class ReuseHeaderView: UICollectionReusableView {
         label.setupForSection(title: "Select Category")
         return label
     }()
-    
     var viewAllButton: UIButton = {
         let button = UIButton()
         button.setTitle("view all", for: .normal)

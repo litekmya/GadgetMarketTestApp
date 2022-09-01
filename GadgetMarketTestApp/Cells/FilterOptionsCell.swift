@@ -8,6 +8,8 @@
 import UIKit
 
 class FilterOptionsCell: UITableViewCell {
+    
+    //MARK: - Public properties
     static let identifier = "FilterOptionsCell"
     
     var titleLabel: UILabel = {
@@ -16,7 +18,6 @@ class FilterOptionsCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
     var textField: UITextField = {
         let field = UITextField()
         field.borderStyle = .roundedRect
@@ -25,7 +26,8 @@ class FilterOptionsCell: UITableViewCell {
         field.font = UIFont.installMarkProFont(for: 18)
         return field
     }()
-
+    
+    //MARK: - Lifecycle
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         setupView()
@@ -33,6 +35,7 @@ class FilterOptionsCell: UITableViewCell {
         setupTextField()
     }
     
+    //MARK: - Layout
     private func setupView() {
         addSubview(titleLabel)
         addSubview(textField)

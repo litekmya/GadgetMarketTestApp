@@ -10,6 +10,7 @@ import HSCycleGalleryView
 
 class CarouselView: UIView {
     
+    //MARK: - Public properties
     var images: [UIImage] = [] {
         didSet {
             galleryView.reloadData()
@@ -28,17 +29,20 @@ class CarouselView: UIView {
         return view
     }()
     
+    //MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
+        translatesAutoresizingMaskIntoConstraints = false
         addSubview(galleryView)
         
         setupGalleryView()
     }
     
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
+    required init(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Layout
     private func setupGalleryView() {
         galleryView.register(cellClass: ProductDetailsCell.self, forCellReuseIdentifier: ProductDetailsCell.identifier)
         galleryView.delegate = self
@@ -46,6 +50,7 @@ class CarouselView: UIView {
     }
 }
 
+//MARK: - HSCycleGalleryViewDelegate
 extension CarouselView: HSCycleGalleryViewDelegate {
     
     func numberOfItemInCycleGalleryView(_ cycleGalleryView: HSCycleGalleryView) -> Int {
@@ -54,7 +59,6 @@ extension CarouselView: HSCycleGalleryViewDelegate {
         } else {
             return images.count
         }
-        
     }
     
     func cycleGalleryView(_ cycleGalleryView: HSCycleGalleryView, cellForItemAtIndex index: Int) -> UICollectionViewCell {

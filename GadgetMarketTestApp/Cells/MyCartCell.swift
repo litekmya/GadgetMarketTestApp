@@ -9,28 +9,23 @@ import UIKit
 
 class MyCartCell: UITableViewCell {
     
+    //MARK: - Public properties
     static let indentifier = "MyCartCell"
     
     let iconImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 10
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.backgroundColor = .white
         return imageView
     }()
     let titleLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        label.font = .installMarkProFont(for: 20)
-        label.textColor = .white
-        label.translatesAutoresizingMaskIntoConstraints = false
+        let label = configureLabel(textColor: .white)
         return label
     }()
     let priceLabel: UILabel = {
-        let label = UILabel()
-        label.font = .installMarkProFont(for: 20)
-        label.textColor = .newOrange
-        label.translatesAutoresizingMaskIntoConstraints = false
+        let label = configureLabel(textColor: .newOrange)
         return label
     }()
     let trashImageView: UIImageView = {
@@ -39,30 +34,32 @@ class MyCartCell: UITableViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-    
-    var stackView: UIStackView!
-    
+    let countView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(red: 40/255, green: 20/255, blue: 67/255, alpha: 1)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.cornerRadius = 12
+        return view
+    }()
     let minusButton: UIButton = {
-        let button = UIButton()
-        
+        let button = configureButton(at: "minus")
         return button
     }()
     let plusButton: UIButton = {
-        let button = UIButton()
-        
+        let button = configureButton(at: "plus")
         return button
     }()
     let countLabel: UILabel = {
         let label = UILabel()
-        
+        label.text = "1"
+        label.textColor = .white
+        label.font = .installMarkProFont(for: 20)
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-    }
-
+    //MARK: - LIfecycle
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         backgroundColor = .newDarkBlue
@@ -70,12 +67,15 @@ class MyCartCell: UITableViewCell {
         addSubview(trashImageView)
         addSubview(titleLabel)
         addSubview(priceLabel)
+        addSubview(countView)
         
         setupImageViews()
         setupLabels()
-        setupStackView()
+        setupCountView()
+        setupStackViewSubviews()
     }
     
+    //MARK: - Layout
     private func setupImageViews() {
         iconImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
         iconImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
@@ -100,18 +100,49 @@ class MyCartCell: UITableViewCell {
         priceLabel.widthAnchor.constraint(equalToConstant: 160).isActive = true
     }
     
-    private func setupStackView() {
-        stackView = UIStackView(arrangedSubviews: [minusButton, countLabel, plusButton])
-        stackView.axis = .vertical
-        addSubview(stackView)
+    private func setupCountView() {
+        countView.trailingAnchor.constraint(equalTo: trashImageView.leadingAnchor, constant: -23).isActive = true
+        countView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        countView.heightAnchor.constraint(equalToConstant: 68).isActive = true
+        countView.widthAnchor.constraint(equalToConstant: 26).isActive = true
         
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.trailingAnchor.constraint(equalTo: trashImageView.leadingAnchor, constant: -23).isActive = true
-        stackView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        stackView.heightAnchor.constraint(equalToConstant: 68).isActive = true
-        stackView.widthAnchor.constraint(equalToConstant: 26).isActive = true
-        stackView.layer.cornerRadius = 14
-        stackView.backgroundColor = .newGray
+        countView.addSubview(minusButton)
+        countView.addSubview(countLabel)
+        countView.addSubview(plusButton)
     }
-
+    
+    private func setupStackViewSubviews() {
+        minusButton.topAnchor.constraint(equalTo: countView.topAnchor, constant: 14).isActive = true
+        minusButton.centerXAnchor.constraint(equalTo: countView.centerXAnchor).isActive = true
+        minusButton.heightAnchor.constraint(equalToConstant: 2).isActive = true
+        minusButton.widthAnchor.constraint(equalToConstant: 10).isActive = true
+        
+        plusButton.bottomAnchor.constraint(equalTo: countView.bottomAnchor, constant: -10).isActive = true
+        plusButton.centerXAnchor.constraint(equalTo: countView.centerXAnchor).isActive = true
+        plusButton.heightAnchor.constraint(equalToConstant: 10).isActive = true
+        plusButton.widthAnchor.constraint(equalToConstant: 10).isActive = true
+        
+        countLabel.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        countLabel.widthAnchor.constraint(equalToConstant: 12).isActive = true
+        countLabel.centerXAnchor.constraint(equalTo: countView.centerXAnchor).isActive = true
+        countLabel.centerYAnchor.constraint(equalTo: countView.centerYAnchor).isActive = true
+    }
+    
+    //MARK: - Private static func
+    private static func configureButton(at imageName: String) -> UIButton {
+        let button = UIButton()
+        button.setImage(UIImage(named: imageName), for: .normal)
+        button.tintColor = .white
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }
+    
+    private static func configureLabel(textColor: UIColor) -> UILabel {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.font = .installMarkProFont(for: 20)
+        label.textColor = textColor
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }
 }

@@ -8,6 +8,8 @@
 import UIKit
 
 class BestSellerCell: UICollectionViewCell, SelfConfigureCell {
+    
+    //MARK: - Public properties
     static var identifier = "BestSellerCell"
     
     let iconImageView: UIImageView = {
@@ -16,14 +18,12 @@ class BestSellerCell: UICollectionViewCell, SelfConfigureCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-    
     let discountPriceLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.installMarkProFont(for: 16)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
     let priceLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.installMarkProFont(for: 10)
@@ -31,34 +31,36 @@ class BestSellerCell: UICollectionViewCell, SelfConfigureCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
     let titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.installMarkProFont(for: 10)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
     let isFavoriteButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "isFavorite"), for: .normal)
+        button.clipsToBounds = false
+        button.contentMode = .scaleToFill
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
+    //MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         setupView()
         setupImageView()
         setupLabels()
-        setupButton()
+        setupIsFavoriteButton()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Layout
     private func setupView() {
         layer.cornerRadius = 10
         clipsToBounds = true
@@ -88,8 +90,10 @@ class BestSellerCell: UICollectionViewCell, SelfConfigureCell {
         titleLabel.topAnchor.constraint(equalTo: discountPriceLabel.bottomAnchor, constant: 5).isActive = true
     }
         
-    private func setupButton() {
-        isFavoriteButton.trailingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: -12).isActive = true
-        isFavoriteButton.topAnchor.constraint(equalTo: iconImageView.topAnchor, constant: -11).isActive = true
+    private func setupIsFavoriteButton() {
+        isFavoriteButton.trailingAnchor.constraint(equalTo: iconImageView.trailingAnchor).isActive = true
+        isFavoriteButton.topAnchor.constraint(equalTo: iconImageView.topAnchor).isActive = true
+        isFavoriteButton.heightAnchor.constraint(equalToConstant: 75).isActive = true
+        isFavoriteButton.widthAnchor.constraint(equalToConstant: 75).isActive = true
     }
 }

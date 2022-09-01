@@ -9,6 +9,7 @@ import UIKit
 
 class CustomNavigationView: UIView {
     
+    //MARK: - Public Properties
     let dismissButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "dismiss"), for: .normal)
@@ -16,7 +17,6 @@ class CustomNavigationView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
     let doneButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -26,7 +26,6 @@ class CustomNavigationView: UIView {
         button.setTitle("Done", for: .normal)
         return button
     }()
-    
     let titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.installMarkProFont(for: 18)
@@ -35,17 +34,25 @@ class CustomNavigationView: UIView {
         label.textAlignment = .center
         return label
     }()
+    let cauntValueLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .newDarkBlue
+        label.font = .installMarkProFont(for: 17)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
     
+    //MARK: - LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         customizeUI()
     }
     
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        customizeUI()
+    required init(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Public methods
     func configureLayoutForView(parentView: UIView, topConstant: CGFloat) {
         translatesAutoresizingMaskIntoConstraints = false
         leadingAnchor.constraint(equalTo: parentView.leadingAnchor).isActive = true
@@ -82,6 +89,7 @@ class CustomNavigationView: UIView {
         
         setupButtons()
         setupTitle()
+        configureDoneButton()
     }
     
     private func setupButtons() {
@@ -100,5 +108,12 @@ class CustomNavigationView: UIView {
         titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: doneButton.leadingAnchor, constant: -8).isActive = true
         titleLabel.centerYAnchor.constraint(equalTo: dismissButton.centerYAnchor).isActive = true
+    }
+    
+    private func configureDoneButton() {
+        doneButton.addSubview(cauntValueLabel)
+        
+        cauntValueLabel.trailingAnchor.constraint(equalTo: doneButton.trailingAnchor, constant: -2).isActive = true
+        cauntValueLabel.bottomAnchor.constraint(equalTo: doneButton.bottomAnchor, constant: 1).isActive = true
     }
 }

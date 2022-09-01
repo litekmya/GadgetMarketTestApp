@@ -9,6 +9,7 @@ import UIKit
 
 class HotSalesHeaderView: UICollectionReusableView {
     
+    //MARK: - Public properties
     static let identifier = "HotSalesHeaderView"
     
     let searchBar: UISearchBar = {
@@ -20,20 +21,17 @@ class HotSalesHeaderView: UICollectionReusableView {
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         return searchBar
     }()
-    
     let searchButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "searchButton"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
     let titleLabel: UILabel = {
         let label = UILabel()
         label.setupForSection(title: "Hot Sales")
         return label
     }()
-    
     let seeMoreButton: UIButton = {
         let button = UIButton()
         button.setTitle("see more", for: .normal)
@@ -43,6 +41,7 @@ class HotSalesHeaderView: UICollectionReusableView {
         return button
     }()
     
+    //MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(searchBar)
@@ -63,6 +62,7 @@ class HotSalesHeaderView: UICollectionReusableView {
         setupViewMoreButton()
     }
     
+    //MARK: - Layout
     private func setupSearchBar() {
         searchBar.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32).isActive = true
         searchBar.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true

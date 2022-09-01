@@ -12,13 +12,15 @@ class MainCollectionView: UICollectionView {
     static let reuseHeaderID = "selectCategoryHeaderID"
     static let hotSalesHeaderID = "hotSalesHeaderID"
     
-    var mainDelegate: MainCollectionViewDelegate!
+    weak var mainDelegate: MainCollectionViewDelegate!
     var models: StoreModel?
     
+    //MARK: - Private properties
     private let whiteIconsModels = SelectCategoryIcons.getDataWithWhiteIcons()
     private let grayIconsModels = SelectCategoryIcons.getData()
     private var isSelected = false
     
+    //MARK: - Lifecycle
     init(mainDelegate: MainCollectionViewDelegate) {
         super.init(frame: .zero, collectionViewLayout: MainCollectionView.createLayout())
         
@@ -48,6 +50,7 @@ class MainCollectionView: UICollectionView {
         }
     }
     
+    //MARK: - Private methods
     private func checkBackgroundColor() {
         for index in 0..<whiteIconsModels.count {
             let indexPath = IndexPath(row: index, section: 0)

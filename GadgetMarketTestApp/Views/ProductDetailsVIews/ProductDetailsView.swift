@@ -9,8 +9,18 @@ import UIKit
 
 class ProductDetailsView: UIView {
     
+    //MARK: - Public properties
+    var priceTitle: String! {
+        didSet {
+            addToCartButton.setupForAddToCart(price: priceTitle)
+        }
+    }
+    
     let navigationView = CustomNavigationView()
     var ratingView: UIStackView!
+    let infoView = InformationView()
+    let setColorView = SetColorView()
+    var ratingImages: [UIImageView] = []
     
     let segmentedControl: HBSegmentedControl = {
         let control = HBSegmentedControl()
@@ -20,17 +30,11 @@ class ProductDetailsView: UIView {
         control.translatesAutoresizingMaskIntoConstraints = false
         return control
     }()
-    
-    let infoView = InformationView()
-    let setColorView = SetColorView()
-    
     let addToCartButton: UIButton = {
         let button = UIButton()
-        button.setupForAddToCart(price: "$1500")
+        button.setupForAddToCart(price: "")
         return button
     }()
-    
-    var images: [UIImageView] = []
     
     //MARK: - Lifecycle
     override init(frame: CGRect) {
@@ -38,12 +42,13 @@ class ProductDetailsView: UIView {
         customizeUI()
     }
     
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        customizeUI()
+    required init(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Layout
     private func customizeUI() {
+        translatesAutoresizingMaskIntoConstraints = false
         clipsToBounds = true
         layer.cornerRadius = 30
         layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
@@ -69,9 +74,9 @@ class ProductDetailsView: UIView {
     }
     
     private func setupRatingView() {
-        images = createImageViews()
+        ratingImages = createImageViews()
         
-        ratingView = UIStackView(arrangedSubviews: images)
+        ratingView = UIStackView(arrangedSubviews: ratingImages)
         ratingView.distribution = .fillProportionally
         ratingView.spacing = 9
         ratingView.axis = .horizontal
@@ -112,6 +117,7 @@ class ProductDetailsView: UIView {
         segmentedControl.topAnchor.constraint(equalTo: ratingView.bottomAnchor, constant: 32).isActive = true
     }
     
+    //MARK: - Private methods
     private func setupXCoordinate(subview: UIView, leading: CGFloat, trailing: CGFloat) {
         subview.translatesAutoresizingMaskIntoConstraints = false
         subview.leadingAnchor.constraint(equalTo: leadingAnchor, constant: leading).isActive = true

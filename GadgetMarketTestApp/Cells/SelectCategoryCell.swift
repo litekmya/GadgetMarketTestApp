@@ -7,12 +7,14 @@
 
 import UIKit
 
+//MARK: - SelfConfigureCell protocol
 protocol SelfConfigureCell {
     static var identifier: String { get }
 }
 
 class SelectCategoryCell: UICollectionViewCell, SelfConfigureCell {
     
+    //MARK: - Public properties
     static var identifier = "SelectCategoryCell"
     
     let iconView: UIView = {
@@ -24,13 +26,11 @@ class SelectCategoryCell: UICollectionViewCell, SelfConfigureCell {
         view.contentMode = .scaleAspectFit
         return view
     }()
-    
     let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-    
     let titleLabel: UILabel = {
        let label = UILabel()
         label.font = UIFont.installMarkProFont(for: 12)
@@ -40,6 +40,7 @@ class SelectCategoryCell: UICollectionViewCell, SelfConfigureCell {
         return label
     }()
     
+    //MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -53,6 +54,7 @@ class SelectCategoryCell: UICollectionViewCell, SelfConfigureCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Layout
     private func setupView() {
         clipsToBounds = true
         addSubview(iconView)

@@ -11,14 +11,13 @@ class HotSalesCell: UICollectionViewCell, SelfConfigureCell {
     
     static var identifier = "HotSalesCell"
     
-    //MARK: - Objects
+    //MARK: - Public properties
     let iconImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
-    
     let isNewImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "new")
@@ -26,7 +25,6 @@ class HotSalesCell: UICollectionViewCell, SelfConfigureCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-    
     let titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.installSFProDisplayFont(size: 25)
@@ -35,7 +33,6 @@ class HotSalesCell: UICollectionViewCell, SelfConfigureCell {
         label.text = "Iphone 12"
         return label
     }()
-    
     let descriptionLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.installSFProDisplayFont(size: 11)
@@ -44,7 +41,6 @@ class HotSalesCell: UICollectionViewCell, SelfConfigureCell {
         label.text = "Some text"
         return label
     }()
-    
     let buyNowButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "buyNow"), for: .normal)
@@ -89,6 +85,8 @@ class HotSalesCell: UICollectionViewCell, SelfConfigureCell {
     private func setupIsNewImageView() {
         isNewImageView.leadingAnchor.constraint(equalTo: iconImageView.leadingAnchor, constant: 25).isActive = true
         isNewImageView.topAnchor.constraint(equalTo: iconImageView.topAnchor, constant: 16).isActive = true
+        isNewImageView.heightAnchor.constraint(equalToConstant: 27).isActive = true
+        isNewImageView.widthAnchor.constraint(equalToConstant: 27).isActive = true
     }
     
     private func setupLabels() {

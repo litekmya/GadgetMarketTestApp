@@ -124,7 +124,6 @@ extension FilterOptionsViewController: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         let cell = tableView.dequeueReusableCell(withIdentifier: FilterOptionsCell.identifier) as? FilterOptionsCell
         cell?.textField.resignFirstResponder()
-        print(1)
         return false
     }
 }

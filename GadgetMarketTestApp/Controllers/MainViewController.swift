@@ -7,17 +7,27 @@
 
 import UIKit
 
-protocol MainCollectionViewDelegate {
+protocol MainCollectionViewDelegate: AnyObject {
     
     func present()
+}
+
+protocol ProductDetailsDelegate: AnyObject {
+    
+    func add(phones: [Phone])
 }
 
 class MainViewController: UIViewController {
     
     //MARK: - Private properties
-    private let contentView = CustomTabBarView()
+    private let tabBarView = CustomTabBarView()
     private var filterButton: UIBarButtonItem!
     private var customCollectionView: MainCollectionView!
+    private var phones: [Phone] = [] {
+        didSet {
+            tabBarView.cauntValueLabel.text = "\(phones.count)"
+        }
+    }
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
@@ -25,7 +35,7 @@ class MainViewController: UIViewController {
         
         setupView()
         setupCollectionView()
-        setupContentView()
+        setupTabBarView()
         setupBarButton()
         getDataFromNetwork()
     }
@@ -43,13 +53,18 @@ class MainViewController: UIViewController {
         customCollectionView.frame = view.bounds
     }
     
-    private func setupContentView() {
-        view.addSubview(contentView)
-        contentView.setupLayout(parentView: view)
+    private func setupTabBarView() {
+        view.addSubview(tabBarView)
+        tabBarView.setupLayout(parentView: view)
+        
+        tabBarView.cartButton.addTarget(self, action: #selector(addToCartButtonAction), for: .touchUpInside)
     }
     
     private func setupBarButton() {
-        filterButton = UIBarButtonItem(image: UIImage(named: "filteredButton"), style: .done, target: self, action: #selector(filterButtonAction))
+        filterButton = UIBarButtonItem(image: UIImage(named: "filteredButton"),
+                                       style: .done,
+                                       target: self,
+                                       action: #selector(filterButtonAction))
         filterButton.tintColor = .black
         navigationItem.rightBarButtonItem = filterButton
     }
@@ -65,11 +80,17 @@ class MainViewController: UIViewController {
     
     //MARK: - @objc
     @objc private func filterButtonAction() {
-        let filterOptionsVC = FilterOptionsViewController()
-        filterOptionsVC.modalPresentationStyle = .custom
-        filterOptionsVC.transitioningDelegate = self
-        
-        present(filterOptionsVC, animated: true)
+        let filterOptionsController = FilterOptionsViewController()
+        filterOptionsController.modalPresentationStyle = .custom
+        filterOptionsController.transitioningDelegate = self
+        present(filterOptionsController, animated: true)
+    }
+    
+    @objc private func addToCartButtonAction() {
+        let myCartController = MyCartController()
+        myCartController.modalPresentationStyle = .fullScreen
+        myCartController.cartContentView.phones = phones
+        present(myCartController, animated: true)
     }
 }
 
@@ -87,7 +108,15 @@ extension MainViewController: MainCollectionViewDelegate {
     func present() {
         let productDetailsVC = ProductDetailsController()
         productDetailsVC.modalPresentationStyle = .fullScreen
-        
+        productDetailsVC.delegate = self
+        productDetailsVC.phones = phones
         present(productDetailsVC, animated: true)
     }
 }
+
+//MARK: - ProductDetailsDelegate
+extension MainViewController: ProductDetailsDelegate {
+    
+    func add(phones: [Phone]) {
+        self.phones = phones
+    }}

@@ -9,12 +9,26 @@ import UIKit
 
 class ProductDetailsController: UIViewController, UIScrollViewDelegate {
     
+    weak var delegate: ProductDetailsDelegate!
+    var phones: [Phone] = [] {
+        didSet {
+            if phones.count == 0 {
+                navigationView.cauntValueLabel.isHidden = true
+            } else {
+                navigationView.cauntValueLabel.text = "\(phones.count)"
+                navigationView.cauntValueLabel.isHidden = false
+            }
+            
+        }
+    }
+    
     //MARK: - Private properties
     private let scrollView = UIScrollView()
     private let scrollContentView = UIView()
     private let navigationView = CustomNavigationView()
     private let carouselView = CarouselView()
     private let productDetailsView = ProductDetailsView()
+    private var phone: Phone!
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
@@ -27,7 +41,7 @@ class ProductDetailsController: UIViewController, UIScrollViewDelegate {
         setupScrollContentView()
         setupNavigationView()
         setupCarouselView()
-        setupContentView()
+        setupproductDetailsView()
         getData()
         addTargets()
     }
@@ -60,17 +74,13 @@ class ProductDetailsController: UIViewController, UIScrollViewDelegate {
     }
     
     private func setupCarouselView() {
-        carouselView.translatesAutoresizingMaskIntoConstraints = false
         carouselView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         carouselView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         carouselView.topAnchor.constraint(equalTo: navigationView.bottomAnchor, constant: 30).isActive = true
         carouselView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 2.8).isActive = true
-        print(UIScreen.main.bounds.height)
-        print(UIScreen.main.bounds.height / 2.8)
     }
     
-    private func setupContentView() {
-        productDetailsView.translatesAutoresizingMaskIntoConstraints = false
+    private func setupproductDetailsView() {
         productDetailsView.topAnchor.constraint(equalTo: carouselView.bottomAnchor).isActive = true
         productDetailsView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
         productDetailsView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
@@ -113,6 +123,13 @@ class ProductDetailsController: UIViewController, UIScrollViewDelegate {
                     }
                 }
                 
+                for index in 0..<Int(model.rating) {
+                    productDetailsView.ratingImages[index].image = UIImage(systemName: "star.fill")
+                }
+                
+                productDetailsView.priceTitle = "$\(model.price)"
+                
+                phone = model
             }
         }
     }
@@ -131,6 +148,7 @@ class ProductDetailsController: UIViewController, UIScrollViewDelegate {
     
     //MARK: - @objc
     @objc private func dismissButtonAction() {
+        delegate.add(phones: phones)
         dismiss(animated: true)
     }
     
@@ -159,13 +177,20 @@ class ProductDetailsController: UIViewController, UIScrollViewDelegate {
     }
     
     @objc private func addToCartButtonAction() {
-        print("Добавлено в корзину")
+        
+        UIView.animate(withDuration: 0.1) { [unowned self] in
+            self.productDetailsView.addToCartButton.backgroundColor = .black
+        } completion: { [unowned self]_ in
+            self.productDetailsView.addToCartButton.backgroundColor = UIColor.newOrange
+        }
+
+        phones.append(phone)
     }
     
     @objc private func doneButtonAction() {
         let myCartController = MyCartController()
         myCartController.modalPresentationStyle = .fullScreen
+        myCartController.cartContentView.phones = phones
         present(myCartController, animated: true)
     }
-    
 }

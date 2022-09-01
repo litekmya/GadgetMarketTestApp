@@ -9,10 +9,10 @@ import UIKit
 
 class MyCartController: UIViewController {
     
+    let cartContentView = MyCartView()
+    
     //MARK: - Private properties
     private let navigationView = CustomNavigationView()
-    private let cartContentView = MyCartView()
-    
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "My Cart"
@@ -29,6 +29,7 @@ class MyCartController: UIViewController {
         setupNavigationView()
         setupTitle()
         setupCartContentView()
+        addTargets()
     }
     
     //MARK: - Layout
@@ -58,5 +59,14 @@ class MyCartController: UIViewController {
         cartContentView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         cartContentView.layer.cornerRadius = 30
         cartContentView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+    }
+    
+    private func addTargets() {
+        navigationView.dismissButton.addTarget(self, action: #selector(dismissButtonAction), for: .touchUpInside)
+    }
+    
+    //MARK: - @objc
+    @objc private func dismissButtonAction() {
+        dismiss(animated: true)
     }
 }

@@ -9,6 +9,7 @@ import UIKit
 
 class TotalView: UIView {
     
+    //MARK: - Public properties
     let totalLabel: UILabel = {
         let label = setupLabel(at: "Total")
         return label
@@ -26,16 +27,17 @@ class TotalView: UIView {
         return label
     }()
     
+    //MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         customizeUI()
     }
     
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        customizeUI()
+    required init(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Layout
     private func customizeUI() {
         translatesAutoresizingMaskIntoConstraints = false
         addSubview(totalLabel)
