@@ -114,7 +114,7 @@ class ProductDetailsView: UIView {
     
     private func setupSegmentedControl() {
         setupXCoordinate(subview: segmentedControl, leading: 27, trailing: -27)
-        segmentedControl.topAnchor.constraint(equalTo: ratingView.bottomAnchor, constant: 32).isActive = true
+        segmentedControl.topAnchor.constraint(equalTo: ratingView.bottomAnchor, constant: 20).isActive = true
     }
     
     //MARK: - Private methods

@@ -73,12 +73,13 @@ class CustomNavigationView: UIView {
     }
     
     func useWithOneButton() {
-        useWithTwoButtons(title: "title", imageName: "")
+        useWithTwoButtons(title: "", imageName: "")
         
         doneButton.setImage(UIImage(named: "favoriteDark"), for: .normal)
         dismissButton.isHidden = true
         titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 38).isActive = true
         titleLabel.font = UIFont.installMarkProFont(for: 24)
+        titleLabel.textAlignment = .left
     }
     
     //MARK: - Private methods

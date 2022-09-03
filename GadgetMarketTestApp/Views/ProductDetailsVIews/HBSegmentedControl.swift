@@ -96,7 +96,7 @@ import UIKit
             lineView.trailingAnchor.constraint(equalTo: label.trailingAnchor, constant: -11).isActive = true
             print(bounds.width)
             lineView.heightAnchor.constraint(equalToConstant: 3).isActive = true
-            lineView.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 8).isActive = true
+            lineView.topAnchor.constraint(equalTo: label.bottomAnchor, constant: -14).isActive = true
             lineView.backgroundColor = .newOrange
             lineView.layer.cornerRadius = 1
             
